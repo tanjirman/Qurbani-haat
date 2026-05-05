@@ -42,7 +42,7 @@ const QurbaniTips = () => {
             <span className="text-green-600 font-black uppercase tracking-[0.3em] text-xs">Expert Guidance</span>
             <h2 className="text-5xl font-black text-slate-900 mt-4 leading-tight">
               Essential Tips for a <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-400">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-green-600 to-emerald-400">
                 Blessed Qurbani
               </span>
             </h2>

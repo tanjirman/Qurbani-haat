@@ -2,8 +2,12 @@
 
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -11,28 +15,36 @@ export default function Register() {
   } = useForm();
 
   const onSubmit = async (formData) => {
-  try {
-    const res = await authClient.signUp.email({
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-      image: formData.photo,
-      callbackURL: "/"
-    });
+    const defaultAvatar =
+      "https://png.pngtree.com/png-vector/20231019/ourmid/pngtree-user-profile-avatar-png-image_10211467.png";
 
-    if (res?.error) {
-      alert(res.error.message);
-    } else {
-      alert("Registration successful!");
+    try {
+      const res = await authClient.signUp.email({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        image: formData.photo || defaultAvatar,
+        callbackURL: "/",
+      });
+
+      if (res?.error) {
+        toast.error(res.error.message || "Registration failed!");
+        return;
+      }
+
+      // ✅ Success toast
+      toast.success("Welcome to Qurbani Haat! 🎉");
+
+      // ✅ Redirect after short delay
+      setTimeout(() => {
+        router.push("/");
+      }, 1500);
+
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong. Please try again.");
     }
-
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-
-  
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -40,7 +52,8 @@ export default function Register() {
         onSubmit={handleSubmit(onSubmit)}
         className="card w-96 bg-base-100 shadow-xl p-6 space-y-4"
       >
-        <h2 className="text-xl font-bold">Register</h2>
+        <h2 className="text-xl font-bold text-center">Register</h2>
+
         {/* Name */}
         <input
           type="text"
@@ -51,16 +64,14 @@ export default function Register() {
         {errors.name && (
           <p className="text-red-500 text-sm">{errors.name.message}</p>
         )}
+
         {/* Photo URL */}
         <input
           type="url"
           placeholder="Photo URL"
           className="input input-bordered w-full"
-          {...register("photo", { required: "Photo is required" })}
+          {...register("photo")}
         />
-        {errors.photo && (
-          <p className="text-red-500 text-sm">{errors.photo.message}</p>
-        )}
 
         {/* Email */}
         <input
@@ -90,6 +101,7 @@ export default function Register() {
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
 
+        {/* Submit */}
         <button className="btn btn-primary w-full" disabled={isSubmitting}>
           {isSubmitting ? "Registering..." : "Register"}
         </button>

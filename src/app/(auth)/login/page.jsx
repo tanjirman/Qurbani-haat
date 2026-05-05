@@ -2,8 +2,12 @@
 
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -15,12 +19,25 @@ export default function Login() {
       const res = await authClient.signIn.email({
         email: data.email,
         password: data.password,
-         callbackURL: "/"
+        callbackURL: "/",
       });
 
-      console.log(res);
+      if (res?.error) {
+        toast.error(res.error.message || "Login failed!");
+        return;
+      }
+
+      // ✅ Success toast
+      toast.success("Login successful! 🎉");
+
+      // ✅ Redirect after short delay
+      setTimeout(() => {
+        router.push("/");
+      }, 2200);
+
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong. Try again!");
     }
   };
 
@@ -30,9 +47,8 @@ export default function Login() {
         onSubmit={handleSubmit(onSubmit)}
         className="card w-96 bg-base-100 shadow-xl p-6 space-y-4"
       >
-        <h2 className="text-xl font-bold">Login</h2>
+        <h2 className="text-xl font-bold text-center">Login</h2>
 
-        
         {/* Email */}
         <input
           type="email"
@@ -57,6 +73,7 @@ export default function Login() {
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
 
+        {/* Submit */}
         <button className="btn btn-primary w-full" disabled={isSubmitting}>
           {isSubmitting ? "Logging in..." : "Login"}
         </button>

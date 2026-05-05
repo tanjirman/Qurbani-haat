@@ -42,7 +42,7 @@ export default function Navbar() {
           <div className="flex gap-8 text-sm font-black uppercase tracking-widest text-slate-500">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/animals">All-Animals</NavLink>
-            {user && <NavLink href="/myProfile">Profile</NavLink>}
+            {user && <NavLink href="/myProfile">My Profile</NavLink>}
           </div>
         </div>
 
