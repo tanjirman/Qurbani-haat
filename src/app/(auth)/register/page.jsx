@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Register() {
   const router = useRouter();
@@ -108,14 +109,19 @@ export default function Register() {
 
         {/* Google Login */}
         <button
-          type="button"
-          onClick={() =>
-            authClient.signIn.social({ provider: "google" })
-          }
-          className="btn btn-outline w-full"
-        >
-          Continue with Google
-        </button>
+  type="button"
+  onClick={async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+      errorCallbackURL: "/register?error=google-failed",
+    });
+  }}
+  className="flex items-center justify-center gap-3 w-full border py-2 rounded-lg hover:bg-gray-100 transition"
+>
+  <FcGoogle className="text-xl" />
+  Continue with Google
+</button>
       </form>
     </div>
   );

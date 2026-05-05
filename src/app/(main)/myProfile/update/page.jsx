@@ -1,26 +1,33 @@
 "use client";
 
+import { useEffect } from "react";                          // 👈 add
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function UpdateProfile() {
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession(); // 👈 add isPending
   const router = useRouter();
-
   const user = session?.user;
 
   const {
     register,
     handleSubmit,
+    reset,                                                   // 👈 add
     formState: { isSubmitting },
-  } = useForm({
-    defaultValues: {
-      name: user?.name,
-      image: user?.image,
-    },
-  });
+  } = useForm();
+
+  // 👇 Populate fields once session loads
+  useEffect(() => {
+    if (user) {
+      reset({
+        name: user.name,
+        email: user.email,
+        image: user.image,
+      });
+    }
+  }, [user, reset]);
 
   const onSubmit = async (data) => {
     try {
@@ -41,9 +48,17 @@ export default function UpdateProfile() {
     }
   };
 
+  // 👇 Don't render form until session is ready
+  if (isPending) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner loading-lg" />
+      </div>
+    );
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen">
-      
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="card w-96 bg-base-100 shadow-xl p-6 space-y-4 animate__animated animate__fadeInUp"
@@ -54,7 +69,16 @@ export default function UpdateProfile() {
           type="text"
           placeholder="Name"
           className="input input-bordered w-full"
-          {...register("name", { required: true })}
+          {...register("name")}
+        />
+
+        {/* Email is read-only — better-auth doesn't support email update this way */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="input input-bordered w-full bg-base-200 cursor-not-allowed"
+          {...register("email")}
+          disabled
         />
 
         <input

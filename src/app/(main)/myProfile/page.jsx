@@ -62,6 +62,12 @@ export default function MyProfile() {
 
         <h2 className="text-2xl font-bold mt-3">{user.name}</h2>
         <p className="text-gray-500">{user.email}</p>
+
+         <Link href="/myProfile/update">
+    <button className="mt-5 bg-slate-800 text-white px-6 py-2 rounded hover:bg-blue-700">
+      Update Profile
+    </button>
+  </Link>
       </div>
 
       {/* Bookings */}
