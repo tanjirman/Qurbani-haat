@@ -1,60 +1,67 @@
 import React from 'react';
-import Link from 'next/link';
+import { FaFacebookF, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-slate-100 pt-16 pb-8">
+    <footer className="bg-slate-950 text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
           
-          {/* Brand Section */}
-          <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="text-2xl font-black tracking-tighter text-slate-900">
-              Qurbani<span className="text-green-600">Haat</span>
-            </Link>
-            <p className="mt-4 text-slate-500 text-sm leading-relaxed">
-              The most trusted digital marketplace for authentic Qurbani animals. Connecting farms directly to your doorstep.
+          {/* 1. About Section */}
+          <div className="space-y-6">
+            <div className="text-3xl font-black tracking-tighter">
+              Qurbani<span className="text-green-500">Haat</span>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
+              We are a premium digital livestock marketplace dedicated to simplifying your Qurbani experience. By connecting ethical farms directly with families, we ensure healthy animals and transparent pricing for a blessed sacrifice.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Marketplace</h4>
-            <ul className="space-y-4 text-sm text-slate-500">
-              <li><Link href="/animals" className="hover:text-green-600 transition-colors">All Animals</Link></li>
-              <li><Link href="/category/cows" className="hover:text-green-600 transition-colors">Cows & Bulls</Link></li>
-              <li><Link href="/category/goats" className="hover:text-green-600 transition-colors">Goats & Sheep</Link></li>
+          {/* 2. Contact Info */}
+          <div className="space-y-6">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-green-500">Get in Touch</h4>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center group-hover:bg-green-600 transition-colors">
+                  <FaEnvelope className="text-slate-400 group-hover:text-white" />
+                </div>
+                <span className="text-slate-300 text-sm font-medium">support@qurbanihaat.com</span>
+              </li>
+              <li className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center group-hover:bg-green-600 transition-colors">
+                  <FaMapMarkerAlt className="text-slate-400 group-hover:text-white" />
+                </div>
+                <span className="text-slate-300 text-sm font-medium">Savar, Dhaka, Bangladesh</span>
+              </li>
             </ul>
           </div>
 
-          {/* Support */}
-          <div>
-            <h4 className="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Support</h4>
-            <ul className="space-y-4 text-sm text-slate-500">
-              <li><Link href="/how-it-works" className="hover:text-green-600 transition-colors">How it Works</Link></li>
-              <li><Link href="/contact" className="hover:text-green-600 transition-colors">Contact Us</Link></li>
-              <li><Link href="/faq" className="hover:text-green-600 transition-colors">Help Center</Link></li>
-            </ul>
+          {/* 3. Social Links */}
+          <div className="space-y-6">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-green-500">Connect With Us</h4>
+            <div className="flex gap-4">
+              <a href="#" className="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center border border-slate-800 hover:border-green-500 hover:bg-green-600 transition-all group">
+                <FaFacebookF className="text-slate-400 group-hover:text-white text-xl" />
+              </a>
+              <a href="#" className="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center border border-slate-800 hover:border-green-500 hover:bg-green-600 transition-all group">
+                <FaWhatsapp className="text-slate-400 group-hover:text-white text-xl" />
+              </a>
+            </div>
+            <p className="text-slate-500 text-xs italic">Follow us for live farm updates and animal arrivals.</p>
           </div>
 
-          {/* Newsletter / Contact */}
-          <div>
-            <h4 className="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Contact</h4>
-            <p className="text-sm text-slate-500 mb-4">Dhaka, Bangladesh</p>
-            <p className="text-sm font-bold text-slate-900">support@qurbanihaat.com</p>
-          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-50 flex flex-col md:row items-center justify-between gap-4">
-          <p className="text-xs text-slate-400 font-medium">
-            © {currentYear} Qurbani Haat. All rights reserved.
+        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-600">
+            © {currentYear} Qurbani Haat. Digital Marketplace Excellence.
           </p>
-          <div className="flex gap-6">
-            <Link href="/privacy" className="text-xs text-slate-400 hover:text-slate-900">Privacy Policy</Link>
-            <Link href="/terms" className="text-xs text-slate-400 hover:text-slate-900">Terms of Service</Link>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Server Status: Online</span>
           </div>
         </div>
       </div>
