@@ -69,7 +69,7 @@ const FeaturedAnimals = () => {
                   </div>
 
                   <Link
-                    href={`/animals/${animal.id}`}
+                    href={`/animalDetails/${animal.id}`}
                     className="flex items-center justify-center w-full bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-green-600 transform transition-all active:scale-95 shadow-lg shadow-slate-200 hover:shadow-green-200"
                   >
                     View Details
