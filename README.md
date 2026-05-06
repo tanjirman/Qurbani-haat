@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Qurbani-Haat
 
-## Getting Started
+Qurbani-Haat is an online animal marketplace designed to simplify the process of buying and booking sacrificial animals. It allows users to browse available animals, view detailed information, and securely book their preferred choice—all from a modern, user-friendly interface.
 
-First, run the development server:
+Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Frontend Framework: Next.js (App Router)
+Styling: Tailwind CSS + DaisyUI
+Authentication: Better Auth
+Routing: Next.js Routing System
+State Management: React Hooks (useState, useEffect)
+Notifications: React Hot Toast
+Icons: React Icons
+Image Optimization: Next.js Image Component
+Data Storage: LocalStorage (for bookings), JSON (animal data)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🚀 Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![DaisyUI](https://img.shields.io/badge/DaisyUI-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
-## Learn More
+Key Features
+1. Animal Marketplace
 
-To learn more about Next.js, take a look at the following resources:
+Browse a collection of available animals with images, pricing, and descriptions. The clean UI makes it easy for users to explore and compare options.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Detailed Animal View
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each animal has a dedicated details page showing full information along with a booking form. Users can quickly view price, description, and proceed to booking.
 
-## Deploy on Vercel
+3. Secure Booking System
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Users can book animals by providing personal details. Bookings are stored locally and managed efficiently, ensuring a smooth user experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Authentication & Route Protection
+
+Integrated with Better Auth to ensure only logged-in users can access sensitive pages like:
+
+Animal Details Page
+My Profile Page
+
+Protected using Next.js proxy (middleware) for enhanced security.
+
+5. User Profile Dashboard
+
+A personalized profile page where users can:
+
+View their information
+See all booked animals
+Cancel bookings easily
+6. Persistent Booking History
+
+All bookings are saved in LocalStorage, allowing users to revisit their booking history even after refreshing the page.
+
+7. Modern UI & UX
+Responsive design for all devices
+Clean layout using Tailwind + DaisyUI
+Toast notifications for user feedback
+Optimized images using Next.js
+
+📦 Deployment
+
+The project is deployed on Vercel, ensuring fast performance and seamless scalability.
