@@ -54,6 +54,7 @@ A personalized profile page where users can:
 View their information
 See all booked animals
 Cancel bookings easily
+
 6. Persistent Booking History
 
 All bookings are saved in LocalStorage, allowing users to revisit their booking history even after refreshing the page.
