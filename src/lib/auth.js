@@ -17,14 +17,13 @@ const db = client.db("qurbani-haat");
 export const auth = betterAuth({
   database: mongodbAdapter(db, { client }),
 
-  secret: process.env.BETTER_AUTH_SECRET, // ✅ Was missing!
+  secret: process.env.BETTER_AUTH_SECRET,
 
-  baseURL: process.env.BETTER_AUTH_URL,   // ✅ Use correct env var
+  baseURL: process.env.BETTER_AUTH_URL,
 
-  trustedOrigins: [                        // ✅ Was missing!
-    "https://qurbani-haat-seven.vercel.app",
-    "https://qurbani-haat-git-main-tanjirmahbub07-6178s-projects.vercel.app",
+  trustedOrigins: [
     "http://localhost:3000",
+    "https://qurbani-haat-seven.vercel.app",
   ],
 
   emailAndPassword: {
