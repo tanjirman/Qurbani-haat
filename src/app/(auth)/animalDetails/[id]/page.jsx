@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, use } from "react";
 import { useRouter } from "next/navigation";
 import animals from "../../../../../public/data/animals.json";
 import toast from "react-hot-toast";
@@ -9,9 +9,8 @@ import Image from "next/image";
 const AnimalDetails = ({ params }) => {
   const router = useRouter();
 
-  const resolvedParams = React.use(params);
-  const animalId = parseInt(resolvedParams.id);
-
+  const { id } = use(params);
+  const animalId = parseInt(id);
   const animal = animals.find((item) => item.id === animalId);
 
   const [formData, setFormData] = useState({
@@ -46,8 +45,7 @@ const AnimalDetails = ({ params }) => {
       bookedAt: new Date().toISOString(),
     };
 
-    const existing =
-      JSON.parse(localStorage.getItem("bookings")) || [];
+    const existing = JSON.parse(localStorage.getItem("bookings")) || [];
 
     localStorage.setItem(
       "bookings",
@@ -71,8 +69,6 @@ const AnimalDetails = ({ params }) => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="grid md:grid-cols-2 gap-8 bg-white shadow-xl rounded-2xl p-8">
-
-        {/* Image */}
         <Image
           src={animal.image}
           alt={animal.name}
@@ -81,7 +77,6 @@ const AnimalDetails = ({ params }) => {
           className="rounded-xl object-cover"
         />
 
-        {/* Details */}
         <div>
           <h1 className="text-3xl font-bold">{animal.name}</h1>
           <p className="text-gray-500 mt-2">{animal.description}</p>
@@ -90,7 +85,6 @@ const AnimalDetails = ({ params }) => {
             ৳ {animal.price.toLocaleString()}
           </h2>
 
-          {/* Form */}
           <form onSubmit={handleBooking} className="mt-5 space-y-3">
             <input
               name="name"
@@ -128,7 +122,10 @@ const AnimalDetails = ({ params }) => {
               className="w-full p-2 bg-gray-100 rounded"
             />
 
-            <button className="w-full bg-green-600 text-white py-2 rounded">
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white py-2 rounded"
+            >
               Book Now
             </button>
           </form>

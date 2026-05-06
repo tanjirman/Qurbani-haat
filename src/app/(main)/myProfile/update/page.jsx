@@ -1,24 +1,23 @@
 "use client";
 
-import { useEffect } from "react";                          // 👈 add
+import { useEffect } from "react";                          
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function UpdateProfile() {
-  const { data: session, isPending } = authClient.useSession(); // 👈 add isPending
+  const { data: session, isPending } = authClient.useSession();  isPending
   const router = useRouter();
   const user = session?.user;
 
   const {
     register,
     handleSubmit,
-    reset,                                                   // 👈 add
+    reset,                                                  
     formState: { isSubmitting },
   } = useForm();
 
-  // 👇 Populate fields once session loads
   useEffect(() => {
     if (user) {
       reset({
@@ -48,7 +47,6 @@ export default function UpdateProfile() {
     }
   };
 
-  // 👇 Don't render form until session is ready
   if (isPending) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -72,7 +70,7 @@ export default function UpdateProfile() {
           {...register("name")}
         />
 
-        {/* Email is read-only — better-auth doesn't support email update this way */}
+        {/* Email  */}
         <input
           type="email"
           placeholder="Email"
