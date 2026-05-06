@@ -39,5 +39,5 @@ export const auth = betterAuth({
 
   baseURL:
     process.env.NEXT_PUBLIC_APP_URL ||
-    "http://localhost:3000",
+    "https://qurbani-haat-git-main-tanjirmahbub07-6178s-projects.vercel.app",
 });
