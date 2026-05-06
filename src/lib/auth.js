@@ -1,11 +1,7 @@
-import dns from "node:dns";
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
-
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
-// ✅ Create a global cached connection (prevents multiple connections)
 const globalForMongo = globalThis;
 
 const client =
@@ -16,15 +12,20 @@ if (!globalForMongo._mongoClient) {
   globalForMongo._mongoClient = client;
 }
 
-// ❗ DO NOT use top-level await here
-// connection will be handled lazily by adapter
-
 const db = client.db("qurbani-haat");
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db, {
-    client,
-  }),
+  database: mongodbAdapter(db, { client }),
+
+  secret: process.env.BETTER_AUTH_SECRET, // ✅ Was missing!
+
+  baseURL: process.env.BETTER_AUTH_URL,   // ✅ Use correct env var
+
+  trustedOrigins: [                        // ✅ Was missing!
+    "https://qurbani-haat-seven.vercel.app",
+    "https://qurbani-haat-git-main-tanjirmahbub07-6178s-projects.vercel.app",
+    "http://localhost:3000",
+  ],
 
   emailAndPassword: {
     enabled: true,
@@ -36,8 +37,4 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     },
   },
-
-  baseURL:
-    process.env.NEXT_PUBLIC_APP_URL ||
-    "https://qurbani-haat-git-main-tanjirmahbub07-6178s-projects.vercel.app",
 });
